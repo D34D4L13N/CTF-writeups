@@ -8,12 +8,13 @@ That kind of special number g is called a primitive root or generator of the fie
 
 **What Does a Primitive Root Do?**
 et’s say p = 7. Then p - 1 = 6. We want to find a number g such that:
+```python
 g^1 mod 7
 g^2 mod 7
 g^3 mod 7
 g^4 mod 7
 g^5 mod 7
-g^6 mod 7 == 1 (always true)
+g^6 mod 7 == 1 (always true)```
 And all the results of g^1 to g^5 mod 7 should give us: 1, 2, 3, 4, 5, 6 (in some order). If that happens, then g is a primitive root.
 
 **How Do We Test If g is a Primitive Root?**
