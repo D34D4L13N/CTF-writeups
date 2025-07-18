@@ -1,6 +1,7 @@
 **CryptoHack** is an online platform designed to teach **cryptography** through **hands-on challenges and puzzles**. It's widely used by cybersecurity enthusiasts, students, and professionals to improve their skills in both modern and classical cryptography.
 
-## Key Features of CryptoHack:
+### Key Features of CryptoHack:
+1 Challenge-based Learning: Solve real-world inspired problems covering topics like:
 - XOR and byte manipulations
 - AES and RSA encryption
 - Hash functions and padding
