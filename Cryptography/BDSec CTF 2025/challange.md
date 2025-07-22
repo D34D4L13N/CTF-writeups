@@ -8,5 +8,4 @@ Hint : Check server logs for the exact encryption time. Some ciphers age with ti
 
 Timestamp like this : 2000, 3, 13, 17, 20, 0 (YYYY,M,DD,HH,mm,ss)
 
-Hints
-Maybe try tracing the heartbeat of March 15 The encryption isn’t just about letters it’s about time. The exact second the message was encrypted determines how each letter shifts. A common hash algorithm turns that moment into a repeating pattern and the position of each letter adds a twist.
+Hints: Maybe try tracing the heartbeat of March 15 The encryption isn’t just about letters it’s about time. The exact second the message was encrypted determines how each letter shifts. A common hash algorithm turns that moment into a repeating pattern and the position of each letter adds a twist.
