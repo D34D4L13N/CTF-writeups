@@ -3,3 +3,17 @@ In this article, I will go through my thought process and the steps I took to co
 Once the challenge starts, By clicking **Check out my website here!**, we arrive at this page:
 ![Home](https://blog.cbarkr.com/media/ctf/picoCTF/SSTI1/home.png)
 
+It’s implied that this website is vulnerable to SSTI, or server side template injection. Websites use template engines to create dynamic content, and SSTI vulnerabilities arise when user-supplied input is supplied to these template engines. Malicious actors may exploit this to inject code into the site.
+![Diagram](https://blog.cbarkr.com/media/ctf/picoCTF/SSTI1/engine.png)
+To see if we can execute code, we can simply try some operation and put it in brackets to see if it will execute. I tried executing `{7*7}` and it didn’t work, so I added extra brackets and it worked!
+![{{7*7}}](https://blog.cbarkr.com/media/ctf/picoCTF/SSTI1/7x7.png)
+![result](https://blog.cbarkr.com/media/ctf/picoCTF/SSTI1/49.png)
+Note that `7*7` was evaluated! Then for `{{7*'7'}}`:
+![777777](https://blog.cbarkr.com/media/ctf/picoCTF/SSTI1/7777777.png)
+Similarly, the input was evaluated. Therefore, this site is in fact vulnerable, and is using either `Jinja2` or `Twig`. Both options are Python libraries, hence our payload will consist of Python.
+If we try something like `{{request}}`, we can access the request object itself:
+![resuest method](https://blog.cbarkr.com/media/ctf/picoCTF/SSTI1/request_result.png)
+I used a payload found on this blogpost: [onsecurity](https://www.onsecurity.io/blog/server-side-template-injection-with-jinja2/). I tried the a payload that allows RCE bypassing and it worked:
+```
+{{request.application.__globals__.__builtins__.__import__(‘os’).popen(‘id’).read()}}
+```
