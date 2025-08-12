@@ -21,3 +21,4 @@ And as we can see, no password is required to use the sudo command. So, I tried 
 ![sudo ls /root](images/ls_root_dir.png)
 And as we can see, I was able to access it, and inside there’s only the flag.txt file. So, I ran `sudo cat /root/flag.txt` to read the contents of the file and consequently retrieve the flag.
 ![flag.txt](images/sudo_flag.png)
+#### Challenge completed!
