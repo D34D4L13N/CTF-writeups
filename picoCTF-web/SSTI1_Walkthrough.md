@@ -5,6 +5,7 @@ Once the challenge starts, By clicking **Check out my website here!**, we arrive
 
 It’s implied that this website is vulnerable to SSTI, or server side template injection. Websites use template engines to create dynamic content, and SSTI vulnerabilities arise when user-supplied input is supplied to these template engines. Malicious actors may exploit this to inject code into the site.
 ![Diagram](https://blog.cbarkr.com/media/ctf/picoCTF/SSTI1/engine.png)
+
 To see if we can execute code, we can simply try some operation and put it in brackets to see if it will execute. I tried executing `{7*7}` and it didn’t work, so I added extra brackets and it worked!
 ![{{7*7}}](https://blog.cbarkr.com/media/ctf/picoCTF/SSTI1/7x7.png)
 ![result](https://blog.cbarkr.com/media/ctf/picoCTF/SSTI1/49.png)
