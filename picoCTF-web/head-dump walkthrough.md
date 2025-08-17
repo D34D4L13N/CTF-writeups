@@ -6,7 +6,8 @@ Inspecting the page source, I didn’t find anything interesting, so since the d
 
 finding `/api-docs`. By visiting the route: I was taken to the web interface of swagger, which is used for testing api. Let’s move on to the exploitation phase.
 
-The only suspicious api from the previous screenshot was `/heapdump`. Clicking on the `Try it out` button and then on `Execute`. 
-As we can see, the body contains a file `Download file`. After downloading it and opening it with `cat heapdump-1755436357133.heapsnapshot | grep "picoCTF{"`
+The only suspicious api from the previous screenshot was `/heapdump`. Clicking on the **Try it out** button and then on **Execute**.
+
+As we can see, the body contains a file **Download file**. After downloading it and opening it with `cat heapdump-1755436357133.heapsnapshot | grep "picoCTF{"`
 
 ![Flag](images/heapdumpflag.png)
