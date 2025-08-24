@@ -1,4 +1,4 @@
-# 📝 CTF Web Exploitation – Server Source Checklist (Resourceful Edition)
+# 📝 CTF Web Exploitation – Server Source Checklist
 
 ---
 
