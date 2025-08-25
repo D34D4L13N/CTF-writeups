@@ -207,18 +207,7 @@ Bypassing most common filters ('.','_','|join','[',']','mro' and 'base') by [@Se
 
 ---
 
-## **Mitigation Strategies**
-
-1. **Input Validation and Sanitization**
-   - Use whitelisting for user input.
-   - Reject inputs with special characters used in template engines.
-2. **Secure Template Engine Configuration**
-   - Disable dangerous features like object access or code execution.
-3. **Escaping User Input**
-   - Escape or encode user-supplied data properly before rendering it in templates.
-4. **Code Audits**
-   - Regularly review code for direct embedding of user inputs in templates.
-5. **Penetration Testing**
-   - Use automated and manual testing techniques to uncover SSTI vulnerabilities.
+## Online resource
+[Onsecurity.io](https://onsecurity.io/article/server-side-template-injection-with-jinja2/)
 
 ---
